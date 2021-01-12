@@ -9,5 +9,8 @@ public class Driver {
     System.out.println(Radix.length(15));
     System.out.println(Radix.length(-10));
     System.out.println(Radix.length(5112));
+    System.out.println(Radix.length(51122));
+    System.out.println(Radix.length(5));
+    System.out.println(Radix.length(-5));
   }
 }

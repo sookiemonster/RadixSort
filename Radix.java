@@ -6,7 +6,13 @@ public class Radix {
 
   public static int length(int n) {
     n = Math.abs(n);
-    String temp = "" + n;
-    return temp.length();
+    if (n == 0) {
+      return 1;
+    }
+    return (int)Math.floor(Math.log10(n)) + 1;
   }
+
+  // public static void merge(MyLinkedList original, MyLinkedList[] buckets) {
+  //
+  // }
 }
