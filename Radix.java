@@ -12,9 +12,32 @@ public class Radix {
     return (int)Math.floor(Math.log10(n)) + 1;
   }
 
-  public static void merge(MyLinkedList original, MyLinkedList[] buckets) {
+  public static void merge(SortableLinkedList original, SortableLinkedList[] buckets) {
     for (int i = 0; i < buckets.length; i++) {
-      original.extend(buckets[i]);
+      if (buckets[i] != null) {
+        original.extend(buckets[i]);
+      }
+    }
+  }
+
+  public static void radixSortSimple(SortableLinkedList data) {
+    int maxLength = 1;
+    SortableLinkedList[] buckets = new SortableLinkedList[10];
+    for (int j = 0; j < maxLength; j++) {
+      for (int i = 0; i < data.size(); i++) {
+        int curr = data.get(i);
+        if (j == 0 && length(curr) > maxLength) {
+          maxLength = length(curr);
+        }
+        int nPlace = nth(curr, j);
+        if (buckets[nPlace] == null) {
+          buckets[nPlace] = new SortableLinkedList();
+        }
+        buckets[nPlace].add(curr);
+        data.remove(i);
+        i--;
+      }
+      merge(data, buckets);
     }
   }
 }
