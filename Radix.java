@@ -40,4 +40,31 @@ public class Radix {
       merge(data, buckets);
     }
   }
+
+  public static void radixSort(SortableLinkedList data) {
+    int maxLength = 1;
+    SortableLinkedList[] buckets = new SortableLinkedList[20];
+    for (int j = 0; j < maxLength; j++) {
+      for (int i = 0; i < data.size(); i++) {
+        int curr = data.get(i);
+        if (j == 0 && length(curr) > maxLength) {
+          maxLength = length(curr);
+        }
+
+        int nPlace = nth(curr, j);
+        if (curr < 0 && nPlace != 0) {
+          nPlace = 9 + (-1 * nPlace);
+        } else {
+          nPlace = 10 + nth(curr, j);
+        }
+        if (buckets[nPlace] == null) {
+          buckets[nPlace] = new SortableLinkedList();
+        }
+        buckets[nPlace].add(curr);
+        data.remove(i);
+        i--;
+      }
+      merge(data, buckets);
+    }
+  }
 }
